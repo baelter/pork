@@ -27,6 +27,7 @@
     "afterEach": true,
     "test": true,
     "ok": true,
-    "console": true
+    "console": true,
+    "$": true
   }
 }

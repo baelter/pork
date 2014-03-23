@@ -50,45 +50,6 @@ module.exports = function (grunt) {
                 jshintrc: true
             }
         },
-        jasmine: {
-            requirejs: {
-                options: {
-                    specs: 'src/**/*Spec.js',
-                    keepRunner: true,
-                    template: require('grunt-template-jasmine-requirejs'),
-                    templateOptions: {
-                        requireConfigFile: 'src/js/main.js'
-                    }
-                }
-            }
-        },
-        requirejs: {
-            release: {
-                options: {
-                    name: 'main',
-                    baseUrl: 'src/js',
-                    out: 'dist/pork.js',
-                    mainConfigFile: 'src/js/main.js'
-                }
-            }
-        },
-        clean : {
-            release : [ 'dist' ]
-        },
-        copy : {
-            release : {
-                files : []
-            }
-        },
-        uglify: {
-            options: {
-                preserveComments: 'all',
-                report: 'min'
-            },
-            compile: {
-                files: {}
-            }
-        }
     });
 
     // load all grunt tasks matching the `grunt-*` pattern, exclude `grunt-template-jasmine-requirejs`
@@ -96,8 +57,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jshint',
-        'copy',
-        'jasmine:requirejs',
         'connect:livereload',
         'open',
         'watch'
