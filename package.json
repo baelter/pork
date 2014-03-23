@@ -1,0 +1,26 @@
+{
+  "name": "pork",
+  "version": "0.0.0",
+  "description": "Pork the game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-connect": "~0.3.0",
+        "connect-livereload": "~0.2.0",
+        "grunt-contrib-jasmine": "~0.5.2",
+        "grunt-open": "~0.2.0",
+        "grunt-template-jasmine-requirejs": "~0.1.6",
+        "grunt-contrib-watch": "~0.4.4",
+        "grunt-contrib-jshint": "~0.8.0",
+        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-copy": "~0.4.1",
+        "load-grunt-tasks": "~0.2.0",
+        "grunt-contrib-uglify": "~0.3.2"
+    }
+}

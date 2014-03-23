@@ -1,0 +1,9 @@
+/.grunt
+/.project
+/.settings
+/node_modules
+/bower_components
+/build
+/dist
+_SpecRunner.html
+*.iml
