@@ -4,10 +4,8 @@ module.exports = function (grunt) {
     // Middleware for directory listing
     var mountFolder = function (connect, point) {
         var path = require('path');
-        console.log(path.resolve(point));
-        return connect['static'](path.resolve(point));
-    },
-        path = require('path');
+        return connect.static(path.resolve(point));
+    };
 
     // Project configuration
     grunt.initConfig({
@@ -22,11 +20,11 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect, options) {
                         return [
-                            require('grunt-connect-proxy/lib/utils').proxyRequest,
                             require('connect-livereload')({
                                 port: 33388
                             }),
-                            mountFolder(connect, options.base)
+                            mountFolder(connect, options.base),
+                            connect.directory(options.base)
                         ];
                     }
                 }
@@ -100,6 +98,7 @@ module.exports = function (grunt) {
         'jshint',
         'copy',
         'jasmine:requirejs',
+        'connect:livereload',
         'open',
         'watch'
     ]);
