@@ -28,6 +28,7 @@
     "test": true,
     "ok": true,
     "console": true,
-    "$": true
+    "$": true,
+    "_": true
   }
 }
