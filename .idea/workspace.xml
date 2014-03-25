@@ -58,19 +58,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="36" selection-start="70" selection-end="70" vertical-scroll-proportion="14.333333">
+            <state line="4" column="58" selection-start="129" selection-end="129" vertical-scroll-proportion="0.13846155">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pork.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pork.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/pork.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="23" selection-start="882" selection-end="882" vertical-scroll-proportion="1.819853">
+            <state line="55" column="23" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reset.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/reset.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="762" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -90,8 +99,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/js/app.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/css/pork.css" />
+        <option value="$PROJECT_DIR$/src/css/reset.css" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -440,16 +450,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/src/css/pork.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="36" selection-start="70" selection-end="70" vertical-scroll-proportion="14.333333">
+        <state line="55" column="23" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/pork.css">
+    <entry file="file://$PROJECT_DIR$/src/css/reset.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="23" selection-start="882" selection-end="882" vertical-scroll-proportion="1.819853">
+        <state line="1" column="762" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="58" selection-start="129" selection-end="129" vertical-scroll-proportion="0.13846155">
           <folding />
         </state>
       </provider>
