@@ -1,7 +1,8 @@
 $(function () {
     'use strict';
     var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40,
-        board, drawBoard, isBetween, isCellEmpty, addTile, tileInCell, allowedToMove, mergeTiles;
+        board, drawBoard, isBetween, isCellEmpty, addTile, tileInCell, allowedToMove, mergeTiles,
+        isGameComplete, endGame, isGameOver, failGame;
 
     //Init new game
     board = {
@@ -57,7 +58,7 @@ $(function () {
         };
 
         board.tiles.push(tile);
-
+        return tile;
     };
 
     tileInCell = function (cell) {
@@ -67,12 +68,11 @@ $(function () {
     allowedToMove = function (tile, cell, tiles) {
         return isCellEmpty(cell, tiles) ||
             (tileInCell(cell).value === tile.value &&
-                _.where(board.tiles, {x:cell.x, y:cell.y}).size() < 2);
+                _.where(board.tiles, {x:cell.x, y:cell.y}).length < 2);
     };
 
     mergeTiles = function (tiles) {
         var mergedTiles,
-            tilesToAdd,
             tilesGroupedByCell = _.groupBy(tiles, function (tile) {
                 return 'x' + tile.x + 'y' + tile.y;
             });
@@ -86,6 +86,36 @@ $(function () {
             });
 
         return mergedTiles;
+    };
+
+    isGameComplete = function () {
+        return _.findWhere(board.tiles, {value: 2048});
+    };
+
+    endGame = function () {
+        $(window).off('keydown');
+        $('.alert-overlay').html('<p>Win!</p>').show();
+    };
+
+    isGameOver = function () {
+        var moves = [{x:1, y:0},{x:-1, y:0},{x:0, y:1},{x:0, y:-1}];
+        if (board.tiles.length === 16) {
+            return !_.some(board.tiles, function (tile) {
+                return _.some(moves, function (move) {
+                    var next = {
+                        x: tile.x + move.x,
+                        y: tile.y + move.y
+                    };
+                    return (isBetween(next.x, 0, 3) && isBetween(next.y, 0, 3) && allowedToMove(tile, next, board.tiles));
+                });
+            });
+        }
+        return false;
+    };
+
+    failGame = function () {
+        $(window).off('keydown');
+        $('.alert-overlay').html('<p>Fail!</p>').show();
     };
 
     $(window).on('keydown', function (event) {
@@ -150,7 +180,7 @@ $(function () {
 
             var next = nextCell(tile);
 
-            if (isBetween(next.x, 0, 3) && isBetween(next.y, 0, 3) && allowedToMove(next, tiles)) {
+            if (isBetween(next.x, 0, 3) && isBetween(next.y, 0, 3) && allowedToMove(tile, next, tiles)) {
                 tile.x = next.x;
                 tile.y = next.y;
                 updateTile(tile, key, tiles);
@@ -168,8 +198,18 @@ $(function () {
 
         board.tiles = newTiles;
         drawBoard();
-        addTile();
-        drawBoard();
+
+        if (isGameComplete()) {
+            endGame();
+        } else {
+            if (board.tiles.length !== 16) {
+                addTile();
+                drawBoard();
+            }
+            if (isGameOver()) {
+                failGame();
+            }
+        }
     });
 
 
