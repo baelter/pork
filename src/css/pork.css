@@ -8,6 +8,15 @@
     height: 440px;
     width: 440px;
     padding: 5px;
+}
+
+.score {
+    font-size: 30px;
+    text-align: right;
+}
+
+.inner {
+    width: 440px;
     margin: 0 auto;
 }
 

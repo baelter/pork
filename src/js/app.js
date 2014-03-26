@@ -2,12 +2,13 @@ $(function () {
     'use strict';
     var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40,
         board, drawBoard, isBetween, isCellEmpty, addTile, tileInCell, allowedToMove, mergeTiles,
-        isGameComplete, endGame, isGameOver, failGame;
+        isGameComplete, endGame, isGameOver, failGame, updateInProgress, updateScore;
 
     //Init new game
     board = {
         tiles : [
-        ]
+        ],
+        score: 2
     };
 
     drawBoard = function () {
@@ -118,8 +119,20 @@ $(function () {
         $('.alert-overlay').html('<p>Fail!</p>').show();
     };
 
+    updateScore = function () {
+        board.score = _.reduce(board.tiles, function (memo, tile) {
+            return memo + tile.value;
+        }, 0);
+        $('#score').html(board.score);
+    };
+
     $(window).on('keydown', function (event) {
-        var columns, sortedTiles, sortFunction, groupFunction, nextCell, updateTile, newTiles;
+        var columns, sortedTiles, sortFunction, groupFunction, nextCell,
+            updateTile, newTiles, anyUpdated;
+        if (updateInProgress) {
+            return;
+        }
+        updateInProgress = true;
         if (event.which === KEY_LEFT) {
             sortFunction = function(tile) {
                 return tile.x;
@@ -173,6 +186,7 @@ $(function () {
                 };
             };
         } else {
+            updateInProgress = false;
             return;
         }
 
@@ -183,6 +197,7 @@ $(function () {
             if (isBetween(next.x, 0, 3) && isBetween(next.y, 0, 3) && allowedToMove(tile, next, tiles)) {
                 tile.x = next.x;
                 tile.y = next.y;
+                anyUpdated = true;
                 updateTile(tile, key, tiles);
             }
         };
@@ -202,7 +217,7 @@ $(function () {
         if (isGameComplete()) {
             endGame();
         } else {
-            if (board.tiles.length !== 16) {
+            if (board.tiles.length !== 16 && anyUpdated) {
                 addTile();
                 drawBoard();
             }
@@ -210,10 +225,14 @@ $(function () {
                 failGame();
             }
         }
+        updateScore();
+        anyUpdated = false;
+        updateInProgress = false;
     });
 
 
     // Run stuff
     addTile();
     drawBoard();
+    updateScore();
 });
